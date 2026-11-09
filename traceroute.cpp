@@ -182,11 +182,10 @@ int main (int argc, char *argv[]) {
         recv_icmp_header = (struct icmphdr*)(receive_array +recv_ip_header->ihl * 4); //Find the icmp_header to reat the ICMP response type
         //Check if the response was an ICMP_ECHOREPLY
         if (recv_icmp_header->type == ICMP_ECHOREPLY) {
-          std::cout << "Congrats bro you got a reply" << std::endl;
+          std::cout << "Final Respondent Received: " << respondent_ip << std::endl;
+          std::cout << "Final TTL: " << current_ttl << std::endl;
           reply_not_received = false;
           not_done_reading = false;
-
-          std::cout << "Final Respondent Received: " << respondent_ip << std::endl;
         }
         else if (recv_icmp_header->type == ICMP_TIME_EXCEEDED)
         {
@@ -194,7 +193,7 @@ int main (int argc, char *argv[]) {
           //Print out router that returned value
           char respondent_ip[INET_ADDRSTRLEN];
           inet_ntop(AF_INET, &recv_addr.sin_addr, respondent_ip, INET_ADDRSTRLEN);
-          std::cout << "Respondent IP: " << respondent_ip << std::endl;
+          std::cout << "Respondent IP: " << respondent_ip << "(TTL: " << current_ttl << ")" <<std::endl;
 
           not_done_reading = false;
         }
