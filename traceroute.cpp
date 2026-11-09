@@ -185,6 +185,8 @@ int main (int argc, char *argv[]) {
           std::cout << "Congrats bro you got a reply" << std::endl;
           reply_not_received = false;
           not_done_reading = false;
+
+          std::cout << "Final Respondent Received: " << respondent_ip << std::endl;
         }
         else if (recv_icmp_header->type == ICMP_TIME_EXCEEDED)
         {
