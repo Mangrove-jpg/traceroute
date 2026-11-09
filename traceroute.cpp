@@ -199,6 +199,11 @@ int main (int argc, char *argv[]) {
       }
     }
 
+    //No response print statement
+    if (five_second_counter >= 3){
+        std::cout << "No response with TTL of: " << current_ttl << std::endl;
+    }
+
     //Increment TTL
     current_ttl += 1;
 
